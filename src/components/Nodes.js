@@ -10,7 +10,7 @@ class Node extends Component {
     return (
       <circle
         className='node'
-        r={30}
+        r={this.props.node.size}
         fill={this.props.color}
         ref={ref => (this.ref = ref)}
       >
@@ -54,10 +54,9 @@ export default class Nodes extends Component {
   }
 
   render() {
-    const color = d3.scaleOrdinal(d3.schemeCategory20);
     const nodes = this.props.nodes.map((node, index) => {
       return (
-        <Node key={index} node={node} color={color(node.group.toString())} />
+        <Node key={index} node={node} color={this.props.colors[node.group]} />
       );
     });
 

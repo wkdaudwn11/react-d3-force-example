@@ -13,18 +13,18 @@ const Wrap = styled.div`
   }
 
   .node {
-    stroke: #000;
+    stroke: none;
     stroke-width: 1.5px;
   }
 
   .link {
-    stroke: #000;
-    stroke-opacity: 1;
+    stroke-opacity: 0.5;
   }
 
   .label {
     font-size: 10px;
-    fill: #000;
+    fill: #ffffff;
+    font-weight: bold;
   }
 `;
 
@@ -108,8 +108,12 @@ export default class App extends Component {
     return (
       <Wrap>
         <svg className='container' width={width} height={height}>
-          <Links links={graph.links} />
-          <Nodes nodes={graph.nodes} simulation={this.simulation} />
+          <Links links={graph.links} colors={graph.colors} />
+          <Nodes
+            nodes={graph.nodes}
+            colors={graph.colors}
+            simulation={this.simulation}
+          />
           <Labels nodes={graph.nodes} />
         </svg>
       </Wrap>

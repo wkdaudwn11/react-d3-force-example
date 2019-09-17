@@ -11,6 +11,7 @@ class Link extends Component {
       <line
         className='link'
         ref={ref => (this.ref = ref)}
+        stroke={this.props.color}
         strokeWidth={Math.sqrt(this.props.link.value)}
       />
     );
@@ -20,7 +21,9 @@ class Link extends Component {
 export default class Links extends Component {
   render() {
     const links = this.props.links.map((link, index) => {
-      return <Link key={index} link={link} />;
+      return (
+        <Link key={index} link={link} color={this.props.colors[link.group]} />
+      );
     });
 
     return <g className='links'>{links}</g>;
