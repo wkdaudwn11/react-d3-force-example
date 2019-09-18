@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import jQuery from 'jquery';
+import { ifError } from 'assert';
+window.$ = window.jQuery = jQuery;
 
 class Node extends Component {
   componentDidMount() {
@@ -10,9 +13,10 @@ class Node extends Component {
     return (
       <circle
         className='node'
-        r={this.props.node.size}
         fill={this.props.color}
         ref={ref => (this.ref = ref)}
+        cx={this.props.cx}
+        cy={this.props.cy}
       >
         <title>{this.props.node.id}</title>
       </circle>
@@ -21,36 +25,36 @@ class Node extends Component {
 }
 
 export default class Nodes extends Component {
+  state = {
+    nodes: ''
+  };
   componentDidMount() {
-    const simulation = this.props.simulation;
-    d3.selectAll('.node').call(
-      d3
-        .drag()
-        .on('start', onDragStart)
-        .on('drag', onDrag)
-        .on('end', onDragEnd)
-    );
-
-    function onDragStart(d) {
-      if (!d3.event.active) {
-        simulation.alphaTarget(0.3).restart();
-      }
-      d.fx = d.x;
-      d.fy = d.y;
-    }
-
-    function onDrag(d) {
-      d.fx = d3.event.x;
-      d.fy = d3.event.y;
-    }
-
-    function onDragEnd(d) {
-      if (!d3.event.active) {
-        simulation.alphaTarget(0);
-      }
-      d.fx = null;
-      d.fy = null;
-    }
+    // const simulation = this.props.simulation;
+    // d3.selectAll('.node').call(
+    //   d3
+    //     .drag()
+    //     .on('start', onDragStart)
+    //     .on('drag', onDrag)
+    //     .on('end', onDragEnd)
+    // );
+    // function onDragStart(d) {
+    //   if (!d3.event.active) {
+    //     simulation.alphaTarget(0.3).restart();
+    //   }
+    //   d.fx = d.x;
+    //   d.fy = d.y;
+    // }
+    // function onDrag(d) {
+    //   d.fx = d3.event.x;
+    //   d.fy = d3.event.y;
+    // }
+    // function onDragEnd(d) {
+    //   if (!d3.event.active) {
+    //     simulation.alphaTarget(0);
+    //   }
+    //   d.fx = null;
+    //   d.fy = null;
+    // }
   }
 
   render() {
