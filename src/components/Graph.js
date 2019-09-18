@@ -165,16 +165,17 @@ export default class App extends Component {
     /** node, label, link의 좌표를 다시 구하는 함수  */
     const getCoordinate = (d, xy) => {
       let result;
+      const width = this.state.width / 2;
       if (xy === 'x') {
         result = d.x;
-        const A_width = 300; // A그룹 부모노드의 기본 x좌표
-        const B_width = 500; // B그룹 부모노드의 기본 x좌표
+        const A_width = width - 100; // A그룹 부모노드의 기본 x좌표
+        const B_width = width + 100; // B그룹 부모노드의 기본 x좌표
         if (d.id === 'A') {
           result = A_width;
         } else if (d.id === 'B') {
           result = B_width;
         } else if (d.id.indexOf('common') !== -1) {
-          result = this.state.width / 2;
+          result = width;
         } else {
           if (d.id.indexOf('A') !== -1) {
             const A_Group = graph.nodes.filter(node => node.group === 1); // A그룹의 노드들
