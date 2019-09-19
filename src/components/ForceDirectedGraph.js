@@ -15,8 +15,14 @@ const Wrap = styled.div`
   }
 
   .node {
-    stroke: none;
-    stroke-width: 1.5px;
+    /* stroke: none;
+    stroke-width: 1.5px; */
+    /* opacity: 0.5; */
+  }
+
+  rect::after {
+    content: '<- 지루해요!';
+    color: red;
   }
 
   .link {
@@ -24,12 +30,12 @@ const Wrap = styled.div`
   }
 
   .label {
-    font-size: 8px;
+    font-size: 10px;
     fill: #ffffff;
   }
 `;
 
-export default class App extends Component {
+export default class ForceDirectedGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -113,51 +119,55 @@ export default class App extends Component {
 
       link
         .attr('x1', function(d) {
-          let result = getCoordinate(d.source, 'x');
+          let result = getCoordinate(d.source, 'x') + 30;
           return result;
         })
         .attr('y1', function(d) {
-          let result = getCoordinate(d.source, 'y');
+          let result = getCoordinate(d.source, 'y') + 15;
           return result;
         })
         .attr('x2', function(d) {
-          let result = getCoordinate(d.target, 'x');
+          let result = getCoordinate(d.target, 'x') + 30;
           return result;
         })
         .attr('y2', function(d) {
-          let result = getCoordinate(d.target, 'y');
+          let result = getCoordinate(d.target, 'y') + 15;
+          console.log(result);
           return result;
         });
 
       node
-        .attr('cx', function(d) {
+        .attr('x', function(d) {
           let result = getCoordinate(d, 'x');
           return result;
         })
-        .attr('cy', function(d) {
+        .attr('y', function(d) {
           let result = getCoordinate(d, 'y');
           return result;
         })
-        .attr('r', function(d) {
-          return d.size;
+        .attr('width', function(d) {
+          return 60;
+        })
+        .attr('height', function(d) {
+          return 30;
         });
 
       label
         .attr('x', function(d) {
           // 라벨 가운데 정렬 코드 시작
-          let textLength = 4;
+          let textLength = 0;
           for (let i = 1; i <= d.name.length; i++) {
             if (i > 1) {
-              textLength = textLength + 3;
+              textLength = textLength - 4;
             }
           }
           // 라벨 가운데 정렬 코드 끝
 
-          let result = getCoordinate(d, 'x');
-          return result - textLength; // 라벨의 x좌표
+          let result = getCoordinate(d, 'x') + 25;
+          return result + textLength; // 라벨의 x좌표
         })
         .attr('y', function(d) {
-          let result = getCoordinate(d, 'y');
+          let result = getCoordinate(d, 'y') + 15;
           return result + 3; // 라벨의 y좌표
         });
     }
@@ -309,7 +319,7 @@ export default class App extends Component {
             const A_Count = A_Group.length - 1; // A그룹의 자식노드 갯수 (A그룹 노드 총갯수 - 부모노드)
             const A_CountCenter = Math.floor(A_Count / 2); // 총노드갯수의 가운데값 (6개면 3)
             const linkWidth = Math.abs(this.state.linkWidth / A_Count); // 링크 선의 길이
-            const Y_Space = linkWidth / A_Count - 3; // 노드끼리의 Y좌표 간격
+            const Y_Space = linkWidth / A_Count + 5; // 노드끼리의 Y좌표 간격
 
             const nodeCoordinateArr = new Array(); // 각 노드들의 Y좌표를 담는 배열. (인덱스는 groupIndex를 참조)
 
@@ -326,9 +336,9 @@ export default class App extends Component {
                 } else if (i === A_CountCenter || i === A_CountCenter - 1) {
                   // 센터노드
                   if (i === A_CountCenter) {
-                    nodeCoordinateArr[i] = height + standard_Y / 2 - 10;
+                    nodeCoordinateArr[i] = height + standard_Y / 2 - 5;
                   } else {
-                    nodeCoordinateArr[i] = height - standard_Y / 2 + 10;
+                    nodeCoordinateArr[i] = height - standard_Y / 2 + 5;
                   }
                 } else {
                   // 센터노드 이후
@@ -368,7 +378,7 @@ export default class App extends Component {
             const B_Count = B_Group.length - 1; // A그룹의 자식노드 갯수 (B그룹 노드 총갯수 - 부모노드)
             const B_CountCenter = Math.floor(B_Count / 2); // 총노드갯수의 가운데값 (6개면 3)
             const linkWidth = Math.abs(this.state.linkWidth / B_Count); // 링크 선의 길이
-            const Y_Space = linkWidth / B_Count - 3; // 노드끼리의 X좌표 간격
+            const Y_Space = linkWidth / B_Count + 5; // 노드끼리의 X좌표 간격
 
             const nodeCoordinateArr = new Array(); // 각 노드들의 Y좌표를 담는 배열. (인덱스는 groupIndex를 참조)
 

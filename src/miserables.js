@@ -11,7 +11,7 @@ export default {
     { id: 'A-3', name: '귀엽다', size: '25', group: 1, groupIndex: 2 },
     { id: 'A-4', name: '재미있다', size: '25', group: 1, groupIndex: 3 },
     { id: 'A-5', name: '혜자', size: '25', group: 1, groupIndex: 4 },
-    // { id: 'A-6', name: 'A-6', size: '25', group: 1, groupIndex: 5 },
+    // { id: 'A-5-1', name: '콩', size: '25', group: 1, groupIndex: 5 },
     // { id: 'A-7', name: 'A-7', size: '25', group: 1, groupIndex: 6 },
     // { id: 'A-8', name: 'A-8', size: '25', group: 1, groupIndex: 7 },
 
@@ -40,7 +40,7 @@ export default {
     { source: 'A', target: 'A-3', value: 1, group: 1 },
     { source: 'A', target: 'A-4', value: 1, group: 1 },
     { source: 'A', target: 'A-5', value: 1, group: 1 },
-    // { source: 'A', target: 'A-6', value: 1, group: 1 },
+    // { source: 'A', target: 'A-5-1', value: 1, group: 1 },
     // { source: 'A', target: 'A-7', value: 1, group: 1 },
     // { source: 'A', target: 'A-8', value: 1, group: 1 },
 
