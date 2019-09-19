@@ -3,4 +3,4 @@
 ### purpose
 
 > Node common between group 'A' and group 'B'
-> ![force3](./images/force3.png)
+> ![force4](./images/force4.png)
